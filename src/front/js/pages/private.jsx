@@ -3,9 +3,10 @@ import { Link, useNavigate } from "react-router-dom";
 import rigoImageUrl from "../../img/rigo-baby.jpg";
 import { Context } from "../store/appContext";
 
-export const Home = () => {
+export const Private = () => {
     const { store, actions } = useContext(Context);
     const navigate = useNavigate();
+    const token = localStorage.getItem("token");
 
     return (
         <div className="container">
@@ -13,11 +14,14 @@ export const Home = () => {
                 <p>
                     <img src={rigoImageUrl} />
                 </p>
-                <Link to="/login">
-                    <button className="btn btn-primary mx-auto">
-                        Ingresar
-                    </button>
-                </Link>
+                <p>Hola</p>
+                {token !== null ? (
+                    <>
+                        <p>Estas loggeado</p>
+                    </>
+                ) : (
+                    <p>No estas loggeado</p>
+                )}
             </div>
         </div>
     );
